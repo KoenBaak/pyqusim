@@ -1,2 +1,2 @@
 # quantal
-Python toy package for simulated quantum computing
+Toy package for simulated quantum computing in Python
