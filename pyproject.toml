@@ -23,7 +23,7 @@ classifiers = [
 dynamic = ["version", "dependencies", "optional-dependencies"]
 
 [project.urls]
-Homepage = "https://github.com/KoenBaak/quantal"
+Homepage = "https://github.com/KoenBaak/quantalpy"
 
 [tool.hatch.version]
 path = "quantalpy/__init__.py"
