@@ -4,8 +4,10 @@ import numpy.typing as npt
 from quantalpy.runnable import Runnable
 from quantalpy.unary_qubit_gate import UnaryQubitGate
 from quantalpy.qpu import QPU
+from quantalpy.utils import export
 
 
+@export
 class BinaryQubitGate(Runnable):
     def __init__(self, matrix: npt.ArrayLike, indices: tuple[int, int]) -> None:
         self.matrix = np.asarray(matrix, dtype=complex)
@@ -15,6 +17,7 @@ class BinaryQubitGate(Runnable):
         qpu.apply_binary_qubit_operator(indices=self.indices, matrix=self.matrix)
 
 
+@export
 class ControlledQubitGate(BinaryQubitGate):
     def __init__(self, gate: UnaryQubitGate, control: int) -> None:
         matrix = np.block(

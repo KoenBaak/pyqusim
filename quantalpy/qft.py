@@ -5,8 +5,10 @@ import numpy as np
 from quantalpy.circuit import Circuit
 from quantalpy.unary_qubit_gate import Hadamard, PhaseShift
 from quantalpy.binary_qubit_gate import ControlledQubitGate
+from quantalpy.utils import export
 
 
+@export
 def qft(indices: Collection[int]) -> Circuit:
     c = Circuit()
 

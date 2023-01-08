@@ -1,8 +1,10 @@
 from quantalpy.qpu import QPU
 from quantalpy.runnable import Runnable
 import quantalpy.typing as qpt
+from quantalpy.utils import export
 
 
+@export
 class Measure(Runnable):
     def __init__(self, index: int | slice) -> None:
         self.index = index

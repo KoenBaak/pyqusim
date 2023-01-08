@@ -1,12 +1,16 @@
 import numpy as np
 
+from quantalpy.ctx import ContextMixin
+from quantalpy.utils import export
+
 PROJECTORS = [
     np.array([[1, 0], [0, 0]], dtype=complex),
     np.array([[0, 0], [0, 1]], dtype=complex),
 ]
 
 
-class QPU:
+@export
+class QPU(ContextMixin):
     def __init__(self, n_qubits: int) -> None:
         self._n_qubits = n_qubits
         self._amplitudes = None

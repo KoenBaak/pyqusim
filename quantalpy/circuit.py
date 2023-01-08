@@ -1,12 +1,14 @@
 from collections import defaultdict
 from quantalpy.runnable import Runnable
 from quantalpy.qpu import QPU
-from quantalpy.globals import _circuit_ctx
+from quantalpy.ctx import ContextMixin
+from quantalpy.utils import export
 
 import quantalpy.typing as qpt
 
 
-class Circuit(Runnable):
+@export
+class Circuit(ContextMixin, Runnable):
     def __init__(self, gates: list[Runnable] | None = None) -> None:
         self.gates = gates or []
 
@@ -37,10 +39,3 @@ class Circuit(Runnable):
         if normalize:
             return {k: v / n for k, v in results.items()}
         return dict(results)
-
-    def __enter__(self) -> "Circuit":
-        _circuit_ctx.append(self)
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        _circuit_ctx.pop(-1)
