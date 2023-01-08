@@ -3,7 +3,7 @@ requires = ["hatchling", "hatch-requirements-txt"]
 build-backend = "hatchling.build"
 
 [project]
-name = "quantal"
+name = "quantalpy"
 description = "Another package for simulated quantum computing in Python"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -26,7 +26,7 @@ dynamic = ["version", "dependencies", "optional-dependencies"]
 Homepage = "https://github.com/KoenBaak/quantal"
 
 [tool.hatch.version]
-path = "quantal/__init__.py"
+path = "quantalpy/__init__.py"
 
 [tool.hatch.metadata.hooks.requirements_txt]
 files = ["requirements.txt"]
