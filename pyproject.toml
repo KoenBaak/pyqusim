@@ -3,7 +3,7 @@ requires = ["hatchling", "hatch-requirements-txt"]
 build-backend = "hatchling.build"
 
 [project]
-name = "quantalpy"
+name = "pyqusim"
 description = "Another package for simulated quantum computing in Python"
 readme = "README.md"
 requires-python = ">=3.10"
