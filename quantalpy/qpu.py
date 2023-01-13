@@ -2,6 +2,7 @@ import numpy as np
 
 from quantalpy.ctx import ContextMixin
 from quantalpy.utils import export
+import quantalpy.typing as qpt
 
 PROJECTORS = [
     np.array([[1, 0], [0, 0]], dtype=complex),
@@ -15,6 +16,15 @@ class QPU(ContextMixin):
         self._n_qubits = n_qubits
         self._amplitudes = None
         self.reset()
+
+    def get_qubit_indices(self, indices: qpt.Indices) -> tuple[int]:
+        match indices:
+            case int():
+                return (indices,)
+            case slice():
+                return tuple(range(*indices.indices(self.n_qubits)))
+            case _:
+                return tuple(indices)
 
     @property
     def n_qubits(self) -> int:

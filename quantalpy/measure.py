@@ -1,5 +1,3 @@
-import typing as t
-
 from quantalpy.qpu import QPU
 from quantalpy.runnable import Runnable
 import quantalpy.typing as qpt
@@ -8,7 +6,7 @@ from quantalpy.utils import export
 
 @export
 class Measure(Runnable):
-    def __init__(self, index: int | slice | t.Iterable[int]) -> None:
+    def __init__(self, index: qpt.Indices) -> None:
         self.index = index
 
     @property
@@ -16,13 +14,8 @@ class Measure(Runnable):
         return True
 
     def run(self, qpu: QPU) -> qpt.MeasureOutcome:
-        match self.index:
-            case int():
-                return qpu.measure(index=self.index)
-            case slice():
-                return tuple(
-                    qpu.measure(index=i)
-                    for i in range(*self.index.indices(qpu.n_qubits))
-                )
-            case _:
-                return tuple(qpu.measure(i) for i in self.index)
+        indices = qpu.get_qubit_indices(self.index)
+        outcomes = tuple(qpu.measure(i) for i in indices)
+        if len(outcomes) == 1:
+            return outcomes[0]
+        return outcomes

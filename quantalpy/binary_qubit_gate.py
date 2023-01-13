@@ -24,3 +24,11 @@ class ControlledQubitGate(BinaryQubitGate):
             [[np.eye(2), np.zeros((2, 2))], [np.zeros((2, 2)), gate.matrix]]
         )
         super().__init__(matrix=matrix, indices=(control, gate.index))
+        self.controlled = gate
+        self.control_index = control
+
+    def __repr__(self) -> str:
+        gate_repr = repr(self.controlled)
+        if gate_repr.endswith(">"):
+            gate_repr = gate_repr[:-1]
+        return f"{gate_repr} controlled at {self.control_index}>"
