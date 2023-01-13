@@ -3,12 +3,12 @@ import typing as t
 import numpy as np
 import numpy.typing as npt
 
-from quantalpy.runnable import Runnable
-from quantalpy.qpu import QPU
-from quantalpy.utils import export
+from pyqusim.runnable import Runnable
+from pyqusim.qpu import QPU
+from pyqusim.utils import export
 
 if t.TYPE_CHECKING:
-    from quantalpy.binary_qubit_gate import ControlledQubitGate
+    from pyqusim.binary_qubit_gate import ControlledQubitGate
 
 
 @export
@@ -21,7 +21,7 @@ class UnaryQubitGate(Runnable):
         qpu.apply_unary_qubit_operator(index=self.index, matrix=self.matrix)
 
     def controlled(self, control: int) -> "ControlledQubitGate":
-        from quantalpy.binary_qubit_gate import ControlledQubitGate
+        from pyqusim.binary_qubit_gate import ControlledQubitGate
 
         return ControlledQubitGate(gate=self, control=control)
 

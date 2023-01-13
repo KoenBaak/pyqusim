@@ -1,8 +1,8 @@
 import numpy as np
 
-from quantalpy.ctx import ContextMixin
-from quantalpy.utils import export
-import quantalpy.typing as qpt
+from pyqusim.ctx import ContextMixin
+from pyqusim.utils import export
+import pyqusim.typing as pqst
 
 PROJECTORS = [
     np.array([[1, 0], [0, 0]], dtype=complex),
@@ -17,7 +17,7 @@ class QPU(ContextMixin):
         self._amplitudes = None
         self.reset()
 
-    def get_qubit_indices(self, indices: qpt.Indices) -> tuple[int]:
+    def get_qubit_indices(self, indices: pqst.Indices) -> tuple[int]:
         match indices:
             case int():
                 return (indices,)

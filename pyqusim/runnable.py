@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from quantalpy.qpu import QPU
-import quantalpy.typing as qpt
+from pyqusim.qpu import QPU
+import pyqusim.typing as pqst
 
 
 class Runnable(ABC):
@@ -10,5 +10,5 @@ class Runnable(ABC):
         return False
 
     @abstractmethod
-    def run(self, qpu: QPU) -> qpt.MeasureOutcome | None:
+    def run(self, qpu: QPU) -> pqst.MeasureOutcome | None:
         pass

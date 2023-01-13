@@ -1,10 +1,10 @@
 import numpy as np
 import numpy.typing as npt
 
-from quantalpy.runnable import Runnable
-from quantalpy.unary_qubit_gate import UnaryQubitGate
-from quantalpy.qpu import QPU
-from quantalpy.utils import export
+from pyqusim.runnable import Runnable
+from pyqusim.unary_qubit_gate import UnaryQubitGate
+from pyqusim.qpu import QPU
+from pyqusim.utils import export
 
 
 @export

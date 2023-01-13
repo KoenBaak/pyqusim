@@ -23,10 +23,10 @@ classifiers = [
 dynamic = ["version", "dependencies", "optional-dependencies"]
 
 [project.urls]
-Homepage = "https://github.com/KoenBaak/quantalpy"
+Homepage = "https://github.com/KoenBaak/pyqusim"
 
 [tool.hatch.version]
-path = "quantalpy/__init__.py"
+path = "pyqusim/__init__.py"
 
 [tool.hatch.metadata.hooks.requirements_txt]
 files = ["requirements.txt"]

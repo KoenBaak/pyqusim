@@ -1,14 +1,14 @@
 import functools
 import typing as t
 
-from quantalpy.ctx import _get_current_ctx
-from quantalpy.qpu import QPU
-from quantalpy.runnable import Runnable
-from quantalpy.circuit import Circuit
-from quantalpy.unary_qubit_gate import UnaryQubitGate, Hadamard, PhaseShift
+from pyqusim.ctx import _get_current_ctx
+from pyqusim.qpu import QPU
+from pyqusim.runnable import Runnable
+from pyqusim.circuit import Circuit
+from pyqusim.unary_qubit_gate import UnaryQubitGate, Hadamard, PhaseShift
 
-from quantalpy.measure import Measure
-from quantalpy.utils import export
+from pyqusim.measure import Measure
+from pyqusim.utils import export
 
 
 class _GateReplacer:

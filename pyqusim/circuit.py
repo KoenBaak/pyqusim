@@ -1,10 +1,10 @@
 from collections import defaultdict
-from quantalpy.runnable import Runnable
-from quantalpy.qpu import QPU
-from quantalpy.ctx import ContextMixin
-from quantalpy.utils import export
+from pyqusim.runnable import Runnable
+from pyqusim.qpu import QPU
+from pyqusim.ctx import ContextMixin
+from pyqusim.utils import export
 
-import quantalpy.typing as qpt
+import pyqusim.typing as pqst
 
 
 @export
@@ -18,7 +18,7 @@ class Circuit(ContextMixin, Runnable):
             return False
         return self.gates[-1].ends_with_measure
 
-    def run(self, qpu: QPU) -> qpt.MeasureOutcome | None:
+    def run(self, qpu: QPU) -> pqst.MeasureOutcome | None:
         result = None
         for gate in self.gates:
             result = gate.run(qpu=qpu)
@@ -26,7 +26,7 @@ class Circuit(ContextMixin, Runnable):
 
     def run_multiple(
         self, qpu: QPU, n: int, normalize: bool = True
-    ) -> dict[qpt.MeasureOutcome, int]:
+    ) -> dict[pqst.MeasureOutcome, int]:
         if not self.ends_with_measure:
             raise RuntimeError(
                 "Method can only be called if the circuit ends with a measurement"

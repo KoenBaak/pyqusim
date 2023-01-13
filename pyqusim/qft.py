@@ -1,15 +1,15 @@
 import numpy as np
 
-from quantalpy.circuit import Circuit
-from quantalpy.unary_qubit_gate import Hadamard, PhaseShift
-from quantalpy.binary_qubit_gate import ControlledQubitGate
-from quantalpy.ctx_funcs import had, phase_shift
-from quantalpy.utils import export
-import quantalpy.typing as qpt
+from pyqusim.circuit import Circuit
+from pyqusim.unary_qubit_gate import Hadamard, PhaseShift
+from pyqusim.binary_qubit_gate import ControlledQubitGate
+from pyqusim.ctx_funcs import had, phase_shift
+from pyqusim.utils import export
+import pyqusim.typing as pqst
 
 
 @export
-def qft(indices: qpt.Indices) -> Circuit:
+def qft(indices: pqst.Indices) -> Circuit:
     c = Circuit()
     indices = (1, 2, 3, 4, 5, 6)
 
