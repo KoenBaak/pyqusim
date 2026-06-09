@@ -21,7 +21,7 @@ class _GateReplacer:
         self.circuit.gates[self.pos] = self.gate.controlled(control=control)
 
 
-def _create_ctx_function(f: t.Type, name: str) -> t.Callable:
+def _create_ctx_function(f: t.Type, name: str):
     @functools.wraps(f, assigned=("__annotations__",), updated=())
     def wrapper(*args, **kwargs):
         ctx = _get_current_ctx()

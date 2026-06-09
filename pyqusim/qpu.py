@@ -17,7 +17,7 @@ class QPU(ContextMixin):
         self._amplitudes = None
         self.reset()
 
-    def get_qubit_indices(self, indices: pqst.Indices) -> tuple[int]:
+    def get_qubit_indices(self, indices: pqst.Indices) -> tuple[int, ...]:
         match indices:
             case int():
                 return (indices,)
@@ -36,30 +36,28 @@ class QPU(ContextMixin):
 
     @staticmethod
     def unary_qubit_operation(
-        state: np.ndarray[complex], index: int, matrix: np.ndarray[(2, 2), complex]
-    ) -> np.ndarray[complex]:
+        state: np.ndarray, index: int, matrix: np.ndarray
+    ) -> np.ndarray:
         aux = np.tensordot(matrix, state, axes=(1, index))
         return np.moveaxis(aux, 0, index)
 
-    def apply_unary_qubit_operator(
-        self, index: int, matrix: np.ndarray[(2, 2), complex]
-    ) -> None:
+    def apply_unary_qubit_operator(self, index: int, matrix: np.ndarray) -> None:
         self._amplitudes = self.unary_qubit_operation(
             state=self._amplitudes, matrix=matrix, index=index
         )
 
     @staticmethod
     def binary_qubit_operator(
-        state: np.ndarray[complex],
+        state: np.ndarray,
         indices: tuple[int, int],
-        matrix: np.ndarray[(4, 4), complex],
-    ) -> np.ndarray[complex]:
+        matrix: np.ndarray,
+    ) -> np.ndarray:
         matrix = matrix.reshape((2, 2, 2, 2))
         aux = np.tensordot(matrix, state, axes=((2, 3), indices))
         return np.moveaxis(aux, (0, 1), indices)
 
     def apply_binary_qubit_operator(
-        self, indices: tuple[int, int], matrix: np.ndarray[(4, 4), complex]
+        self, indices: tuple[int, int], matrix: np.ndarray
     ) -> None:
         self._amplitudes = self.binary_qubit_operator(
             state=self._amplitudes, matrix=matrix, indices=indices
@@ -83,4 +81,4 @@ class QPU(ContextMixin):
                 self._amplitudes = result_one_state / np.linalg.norm(
                     result_one_state.flatten()
                 )
-        return outcome
+        return int(outcome)
