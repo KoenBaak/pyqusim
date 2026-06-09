@@ -1,8 +1,4 @@
-# Pycharm
 .idea/
-
-# notebooks
-_notebooks/
-.ipynb_checkpoints
-
+.vscode/
 __pycache__/
+.venv
